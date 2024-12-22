@@ -24,7 +24,7 @@ This project is a web-based WhatsApp clone built using the MERN stack (MongoDB, 
     *   Ability to send and receive media files (images, videos, documents).
 *   **Linking QR Code Functionality with WhatsApp Web.**
 *   **Notifications:** Implementing push notifications for new messages.
-*   **End-to-End Encryption:**  Adding encryption for security and privacy.
+*   **End-to-End Encryption:** Adding encryption for security and privacy.
 
 ## Technologies Used
 
@@ -53,21 +53,32 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installation
 
 1.  Clone the repository:
+
     ```bash
     git clone [https://github.com/lumber1ghauri/whatsapp-clone.git](https://github.com/lumber1ghauri/whatsapp-clone.git)
     ```
 
 2.  Navigate to the project directory:
+
     ```bash
     cd whatsapp-clone
     ```
 
 3.  Install dependencies:
+
     ```bash
     npm install
     ```
     (or `yarn install` if using yarn)
-4.  Start the application:
+
+4.  Create a `.env` file in the root directory and add the following environment variables:
+    ```
+    PORT=5000 
+    MONGO_URI=<your_mongodb_connection_string>
+    ```
+
+5.  Start the application:
+
     ```bash
     npm start
     ```
@@ -75,7 +86,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Usage
 
-*   The application will start on `http://localhost:3000` (or the port specified in your `.env` file).
+*   The application will start on `http://localhost:5000` (or the port specified in your `.env` file).
 *   You will be presented with a basic loading screen showing a QR code (currently not functional).
 *   Click on the QR Image to enter in the Chat Page UI
 *   Use the login page to access the basic chat page UI (chat functionality is not yet implemented).

@@ -1,0 +1,176 @@
+/* Modal Overlay */
+.profile-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Profile Modal Content */
+.profile-content {
+  background-color: #2a3942;
+  color: white;
+  width: 30%;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Profile Header */
+.profile-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+/* Profile Image Container */
+.profile-photo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.profile-photo {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #111b21;
+  overflow: hidden;
+}
+
+.profile-photo .profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.add-photo {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 0;
+}
+
+.add-photo i {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+/* Profile Info Section */
+.profile-info {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.profile-info h3 {
+  font-size: 1rem;
+  color: #00a884;
+  margin-bottom: 5px;
+}
+
+.profile-info p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  color: #d1d1d1;
+}
+
+.info-text {
+  font-size: 0.8rem;
+  color: #8696a0;
+  margin-top: 5px;
+}
+
+/* Editable Fields */
+.editable-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editable-field i {
+  cursor: pointer;
+  color: #8696a0;
+  font-size: 0.8rem;
+}
+
+.editable-field i:hover {
+  color: #00a884;
+}
+.profile-photo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .profile-photo {
+    position: relative;
+    width: 150px;
+    height: 150px;
+  }
+  
+  .profile-photo img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .add-photo {
+    display: none;
+  }
+  
+  .profile-info {
+    margin: 20px 0;
+  }
+  
+  .profile-info h3 {
+    font-size: 1rem;
+    color: #00a884;
+  }
+  
+  .profile-info p {
+    font-size: 1rem;
+    color: white;
+  }
+  
+  .info-text {
+    font-size: 0.85rem;
+    color: #8696a0;
+  }
+  /* Logout Button Styling */
+.logout-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .logout-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-button:hover {
+    background-color: #e63939;
+  }
+  
