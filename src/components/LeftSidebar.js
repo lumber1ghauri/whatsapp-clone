@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import "./LeftSidebar.css";
 import Profile from "./Profile";
+import StatusPage from "./StatusPage";
 
 const LeftSidebar = ({ onLogout }) => { 
   const [hoveredIcon, setHoveredIcon] = useState("");
   const [showProfile, setShowProfile] = useState(false);
+  const [showStatusPage, setShowStatusPage] = useState(false);
 
   const handleIconClick = (feature) => {
-    alert(`The ${feature} feature is not developed yet. Please wait for complete development.`);
+    if (feature === "Status") {
+      setShowStatusPage(true);
+    } else {
+      alert(`The ${feature} feature is not developed yet. Please wait for complete development.`);
+    }
   };
 
   const user = {
@@ -98,6 +104,10 @@ const LeftSidebar = ({ onLogout }) => {
           onClose={() => setShowProfile(false)}
           onLogout={onLogout}
         />
+      )}
+
+      {showStatusPage && (
+        <StatusPage onClose={() => setShowStatusPage(false)} />
       )}
     </div>
   );
