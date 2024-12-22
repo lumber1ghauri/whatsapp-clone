@@ -1,0 +1,165 @@
+/* Left Sidebar */
+.left-sidebar {
+    width: 70px;
+    background-color: #202c33;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    height: 100vh;
+  }
+  
+  /* Top Icons Section */
+  .top-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  /* Bottom Icons Section */
+  .bottom-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  /* Sidebar Icons */
+  .sidebar-icon {
+    margin-bottom: 10px;
+    color: #aebac1;
+    font-size: 18px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .sidebar-icon:hover {
+    color: #00a884;
+  }
+  
+  /* Profile Picture */
+  .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  /* Badge for Notifications */
+  .badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: #00a884;
+    color: white;
+    font-size: 10px;
+    padding: 3px 6px;
+    border-radius: 12px;
+  }
+  /* Tooltip Styles */
+.tooltip {
+  position: absolute;
+  left: 60px;
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Sidebar Icon Container */
+.sidebar-icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.sidebar-icon i,
+.sidebar-icon img {
+  font-size: 1.4rem;
+  color: #8696a0;
+}
+
+.sidebar-icon i:hover,
+.sidebar-icon img:hover {
+  color: #00a884;
+  transition: color 0.3s ease;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Animation for Tooltip */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.left-sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  background-color: #2a3942;
+  padding: 10px 0;
+}
+
+.top-icons,
+.bottom-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.sidebar-icon {
+  position: relative;
+  cursor: pointer;
+  color: #8696a0;
+  font-size: 1.5rem;
+}
+
+.sidebar-icon:hover {
+  color: #00a884;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.tooltip {
+  position: absolute;
+  top: 50%;
+  left: 120%;
+  transform: translateY(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  font-size: 0.8rem;
+  z-index: 10;
+}
+
+
+  
