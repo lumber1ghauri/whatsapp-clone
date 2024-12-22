@@ -1,75 +1,104 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
+# WhatsApp Clone (MERN Stack)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a web-based WhatsApp clone built using the MERN stack (MongoDB, Express.js, React, Node.js). It aims to replicate some of the core functionalities of WhatsApp, including a front-end chat interface, login, and a QR code-based loading screen.
 
-## Available Scripts
+## Project Status
 
-In the project directory, you can run:
+**This project is currently under development and is not yet fully functional.**
 
-### `npm start`
+**Completed Functionalities:**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+*   **Front-end Chat Page:** A basic user interface for displaying the chat list and individual chat windows (visual structure only, no real-time chat yet).
+*   **Login Page:** Users can log in to the application (functionality connected with the database or mock user data).
+*   **Loading Screen with QR Code:** A loading screen that displays a QR code (currently for visual representation, linking to WhatsApp Web is not yet implemented).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Features Not Yet Developed:**
 
-### `npm test`
+*   **Real-time Chat Functionality:**
+    *   Implementing real-time message sending and receiving using Socket.IO.
+*   **Other Pages/Sections:**
+    *   Group Chat
+    *   Status
+    *   Archived Chats
+*   **File Send and Receive:**
+    *   Ability to send and receive media files (images, videos, documents).
+*   **Linking QR Code Functionality with WhatsApp Web.**
+*   **Notifications:** Implementing push notifications for new messages.
+*   **End-to-End Encryption:** Adding encryption for security and privacy.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies Used
 
-### `npm run build`
+*   **Front-end:**
+    *   React
+    *   HTML
+    *   CSS
+*   **Back-end:**
+    *   Node.js
+    *   Express.js
+*   **Database:**
+    *   MongoDB
+*   **Real-time Communication:**
+    *   Socket.IO (planned)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prerequisites
 
-### `npm run eject`
+*   Node.js (version 14 or higher recommended)
+*   npm (or yarn)
+*   MongoDB (make sure it's installed and running)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Installation
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1.  Clone the repository:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    ```bash
+    git clone [https://github.com/lumber1ghauri/whatsapp-clone.git](https://github.com/lumber1ghauri/whatsapp-clone.git)
+    ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2.  Navigate to the project directory:
 
-## Learn More
+    ```bash
+    cd whatsapp-clone
+    ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3.  Install dependencies:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    ```bash
+    npm install
+    ```
+    (or `yarn install` if using yarn)
 
-### Code Splitting
+4.  Create a `.env` file in the root directory and add the following environment variables:
+    ```
+    PORT=5000 
+    MONGO_URI=<your_mongodb_connection_string>
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+5.  Start the application:
 
-### Analyzing the Bundle Size
+    ```bash
+    npm start
+    ```
+    (or `yarn start`)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Usage
 
-### Making a Progressive Web App
+*   The application will start on `http://localhost:5000` (or the port specified in your `.env` file).
+*   You will be presented with a basic loading screen showing a QR code (currently not functional).
+*   Click on the QR Image to enter in the Chat Page UI
+*   Use the login page to access the basic chat page UI (chat functionality is not yet implemented).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Future Plans
 
-### Advanced Configuration
+*   Implement real-time chat functionality using Socket.IO.
+*   Develop group chat, status, and archived chats sections.
+*   Enable file sending and receiving.
+*   Integrate QR code scanning to link with WhatsApp Web.
+*   Add end-to-end encryption for enhanced security.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Contributing
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-=======
-# whatsapp-clone
-Web Whatsapp- Clone using MERN Stack
->>>>>>> 3a3e4cde7be66751c530ad9767b39dff0530bbbf
+Contributions are welcome! If you'd like to contribute, please fork the repository and create a pull request.
