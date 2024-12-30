@@ -2,15 +2,17 @@ import React, { useState, useEffect } from "react";
 import Sidebar from "./components/Sidebar";
 import Chat from "./components/Chat";
 import LeftSidebar from "./components/LeftSidebar";
+import StatusPage from "./components/StatusPage";
 import LoadingScreen from "./components/LoadingScreen";
 import Login from "./components/Login";
 
 import "./App.css";
+
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [selectedChat, setSelectedChat] = useState(null);
-
+  const [showStatusPage, setShowStatusPage] = useState(false);
   const [chats] = useState([
     {
       id: 1,
@@ -122,7 +124,7 @@ const App = () => {
     },
   ]);
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 10000);
+    const timer = setTimeout(() => setIsLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -133,9 +135,10 @@ const App = () => {
       setIsLoggedIn(true);
     }, 5000);
   };
+
   const handleLogout = () => {
     setIsLoggedIn(false);
-    setSelectedChat(null); 
+    setSelectedChat(null);
   };
 
   if (isLoading) {
@@ -144,15 +147,26 @@ const App = () => {
   if (!isLoggedIn) {
     return <Login onLogin={handleLogin} />;
   }
+
   return (
     <div className="app">
       <div className="content-container">
-        <LeftSidebar onLogout={handleLogout} />
+        {/* Pass setShowStatusPage to LeftSidebar */}
+        <LeftSidebar
+          onLogout={handleLogout}
+          onShowStatus={() => setShowStatusPage(true)}
+        />
         <Sidebar chats={chats} setSelectedChat={setSelectedChat} />
         <Chat selectedChat={selectedChat} />
       </div>
+
+      {/* Show the StatusPage when triggered */}
+      {showStatusPage && (
+        <div className="status-overlay">
+          <StatusPage onClose={() => setShowStatusPage(false)} />
+        </div>
+      )}
     </div>
   );
 };
-
 export default App;

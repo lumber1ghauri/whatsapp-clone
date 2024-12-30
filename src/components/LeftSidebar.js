@@ -1,21 +1,19 @@
 import React, { useState } from "react";
 import "./LeftSidebar.css";
 import Profile from "./Profile";
-import StatusPage from "./StatusPage";
 
-const LeftSidebar = ({ onLogout }) => { 
+const LeftSidebar = ({ onLogout, onShowStatus }) => {
   const [hoveredIcon, setHoveredIcon] = useState("");
   const [showProfile, setShowProfile] = useState(false);
-  const [showStatusPage, setShowStatusPage] = useState(false);
+
 
   const handleIconClick = (feature) => {
     if (feature === "Status") {
-      setShowStatusPage(true);
+      onShowStatus(); // Use the prop from App.js
     } else {
       alert(`The ${feature} feature is not developed yet. Please wait for complete development.`);
     }
   };
-
   const user = {
     name: "Ukasha Zahid",
     profilePicture: "/images/user.png",
@@ -52,7 +50,9 @@ const LeftSidebar = ({ onLogout }) => {
           onClick={() => handleIconClick("Channels")}
         >
           <i className="fas fa-comment-dots"></i>
-          {hoveredIcon === "Channels" && <div className="tooltip">Channels</div>}
+          {hoveredIcon === "Channels" && (
+            <div className="tooltip">Channels</div>
+          )}
         </div>
 
         <div
@@ -72,7 +72,9 @@ const LeftSidebar = ({ onLogout }) => {
           onClick={() => handleIconClick("Communities")}
         >
           <i className="fas fa-circle-notch"></i>
-          {hoveredIcon === "Communities" && <div className="tooltip">Communities</div>}
+          {hoveredIcon === "Communities" && (
+            <div className="tooltip">Communities</div>
+          )}
         </div>
       </div>
 
@@ -98,16 +100,13 @@ const LeftSidebar = ({ onLogout }) => {
         </div>
       </div>
 
+      {/* Render Profile Page */}
       {showProfile && (
         <Profile
           user={user}
           onClose={() => setShowProfile(false)}
           onLogout={onLogout}
         />
-      )}
-
-      {showStatusPage && (
-        <StatusPage onClose={() => setShowStatusPage(false)} />
       )}
     </div>
   );
