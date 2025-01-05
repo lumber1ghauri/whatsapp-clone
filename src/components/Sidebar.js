@@ -27,18 +27,15 @@ const Sidebar = ({ chats, setSelectedChat }) => {
       <div className="sidebar-header">
         <h2>Chats</h2>
         <div className="actions">
-          <i
-            className="fas fa-ellipsis-v"
-            onClick={toggleDropdown}
-          ></i>
+          <i className="fas fa-ellipsis-v" onClick={toggleDropdown}></i>
           {dropdownVisible && (
             <div className="dropdown-menu" ref={dropdownRef}>
               <ul>
-                <li>New group</li>
-                <li>Starred messages</li>
-                <li>Select chats</li>
-                <li>Log out</li>
-                <li>Get WhatsApp for Windows</li>
+                <li onClick={() => setDropdownVisible(false)}>New group</li>
+                <li onClick={() => setDropdownVisible(false)}>Starred messages</li>
+                <li onClick={() => setDropdownVisible(false)}>Select chats</li>
+                <li onClick={() => setDropdownVisible(false)}>Log out</li>
+                <li onClick={() => setDropdownVisible(false)}>Get WhatsApp for Windows</li>
               </ul>
             </div>
           )}
@@ -49,28 +46,33 @@ const Sidebar = ({ chats, setSelectedChat }) => {
           type="text"
           placeholder="Search or start a new chat"
           className="search-input"
+          onChange={(e) => console.log("Search input:", e.target.value)}
         />
       </div>
       <ul className="chat-list">
-        {chats.map((chat) => (
-          <li
-            key={chat.id}
-            onClick={() => setSelectedChat(chat)}
-            className="chat-item"
-          >
-            <img
-              src={chat.profilePicture}
-              alt={chat.name}
-              className="chat-profile-pic"
-            />
-            <div className="chat-details">
-              <strong className="chat-name">{chat.name}</strong>
-              <p className="chat-last-message">
-                {chat.messages[chat.messages.length - 1]?.text || "No messages yet"}
-              </p>
-            </div>
-          </li>
-        ))}
+        {chats && chats.length > 0 ? (
+          chats.map((chat) => (
+            <li
+              key={chat.id}
+              onClick={() => setSelectedChat(chat)}
+              className="chat-item"
+            >
+              <img
+                src={chat.profilePicture}
+                alt={chat.name}
+                className="chat-profile-pic"
+              />
+              <div className="chat-details">
+                <strong className="chat-name">{chat.name}</strong>
+                <p className="chat-last-message">
+                  {chat.messages?.[chat.messages.length - 1]?.text || "No messages yet"}
+                </p>
+              </div>
+            </li>
+          ))
+        ) : (
+          <li className="no-chats-message">No chats available</li>
+        )}
       </ul>
     </div>
   );

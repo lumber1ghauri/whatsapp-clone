@@ -16,33 +16,26 @@ const App = () => {
   const [chats] = useState([
     {
       id: 1,
+      chatId: "chat1", // Add chatId to match backend
       name: "Haseeb Karachi",
       profilePicture: "/images/user.jpg",
-      messages: [
-        { text: "Hey, how are you?", sender: "John", time: "11:00 AM" },
-        { text: "I’m good, thanks!", sender: "You", time: "11:01 AM" },
-      ],
     },
     {
       id: 2,
+      chatId: "chat2", // Add chatId to match backend
       name: "Abdul Rehman",
       profilePicture: "/images/user2.jpg",
-      messages: [
-        { text: "Hi! Long time no see.", sender: "Jane", time: "10:00 AM" },
-        { text: "Yeah, it’s been a while.", sender: "You", time: "10:01 AM" },
-      ],
     },
     {
       id: 3,
+      chatId: "chat3", // Add chatId to match backend
       name: "Hassan Iftikhar",
       profilePicture: "/images/user3.jpg",
-      messages: [
-        { text: "Hey, how are you?", sender: "John", time: "11:00 AM" },
-        { text: "I'm good, thanks!", sender: "You", time: "11:01 AM" },
-      ],
     },
+    // Add more chats here...
     {
-      id: 4,
+      id:4,
+      chatId: "chat4",
       name: "Usman Shahid",
       profilePicture: "/images/user4.jpg",
       messages: [
@@ -51,7 +44,8 @@ const App = () => {
       ],
     },
     {
-      id: 5,
+      id:5,
+      chatId: "chat5",
       name: "Muaz",
       profilePicture: "/images/user5.jpg",
       messages: [
@@ -60,7 +54,8 @@ const App = () => {
       ],
     },
     {
-      id: 6,
+      id:6,
+      chatId: "chat6",
       name: "Waleed Baig",
       profilePicture: "/images/user6.jpg",
       messages: [
@@ -69,7 +64,8 @@ const App = () => {
       ],
     },
     {
-      id: 7,
+      id:7,
+      chatId: "chat7",
       name: "Ikram Bhai",
       profilePicture: "/images/user7.jpg",
       messages: [
@@ -78,7 +74,8 @@ const App = () => {
       ],
     },
     {
-      id: 8,
+      id:8,
+      chatId: "chat8",
       name: "Aqdas IT 21",
       profilePicture: "/images/user8.jpg",
       messages: [
@@ -87,7 +84,8 @@ const App = () => {
       ],
     },
     {
-      id: 9,
+      id:9,
+      chatId: "chat9",
       name: "Wasim Iqbal",
       profilePicture: "/images/user9.jpg",
       messages: [
@@ -96,7 +94,8 @@ const App = () => {
       ],
     },
     {
-      id: 10,
+      id:10,
+      chatId: "chat10",
       name: "Peter Parker",
       profilePicture: "/images/user10.jpg",
       messages: [
@@ -105,7 +104,8 @@ const App = () => {
       ],
     },
     {
-      id: 11,
+      id:11,
+      chatId: "chat11",
       name: "Clark Kent",
       profilePicture: "/images/user11.jpg",
       messages: [
@@ -114,7 +114,8 @@ const App = () => {
       ],
     },
     {
-      id: 12,
+      id:12,
+      chatId: "chat12",
       name: "Barry Allen",
       profilePicture: "/images/user12.jpg",
       messages: [
@@ -123,6 +124,7 @@ const App = () => {
       ],
     },
   ]);
+
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 2000);
     return () => clearTimeout(timer);
@@ -151,16 +153,11 @@ const App = () => {
   return (
     <div className="app">
       <div className="content-container">
-        {/* Pass setShowStatusPage to LeftSidebar */}
-        <LeftSidebar
-          onLogout={handleLogout}
-          onShowStatus={() => setShowStatusPage(true)}
-        />
+        <LeftSidebar onLogout={handleLogout} onShowStatus={() => setShowStatusPage(true)} />
         <Sidebar chats={chats} setSelectedChat={setSelectedChat} />
         <Chat selectedChat={selectedChat} />
       </div>
 
-      {/* Show the StatusPage when triggered */}
       {showStatusPage && (
         <div className="status-overlay">
           <StatusPage onClose={() => setShowStatusPage(false)} />
@@ -169,4 +166,5 @@ const App = () => {
     </div>
   );
 };
+
 export default App;

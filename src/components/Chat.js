@@ -1,21 +1,66 @@
 import React, { useState, useRef, useEffect } from "react";
+import axios from "axios";
+import { io } from "socket.io-client"; // Import Socket.IO client
 import "./Chat.css";
 
 const Chat = ({ selectedChat }) => {
+  const [messages, setMessages] = useState([]); // Store messages
   const [message, setMessage] = useState(""); 
   const [menuDropdownVisible, setMenuDropdownVisible] = useState(false);
   const [plusDropdownVisible, setPlusDropdownVisible] = useState(false);
+  const socket = useRef(null); // Use a ref to hold the socket connection
 
   const menuDropdownRef = useRef(null);
   const plusDropdownRef = useRef(null);
 
+  // Initialize Socket.IO connection and fetch messages when selectedChat changes
+  useEffect(() => {
+    if (!socket.current) {
+      socket.current = io("http://localhost:5050"); // Connect to the backend WebSocket server
+    }
+
+    if (selectedChat) {
+      const fetchMessages = async () => {
+        try {
+          console.log("Fetching messages for chatId:", selectedChat.chatId);
+          const response = await axios.get(
+            `http://localhost:5050/api/messages/${selectedChat.chatId}`
+          );
+          setMessages(response.data); // Set the state to the fetched messages
+        } catch (error) {
+          console.error("Error fetching messages:", error);
+        }
+      };
+      
+      fetchMessages();
+
+      // Listen for new messages from the server
+      socket.current.on("receiveMessage", (newMessage) => {
+        if (newMessage.chatId === selectedChat.chatId) {
+          setMessages((prevMessages) => [...prevMessages, newMessage]);
+        }
+      });
+
+      return () => {
+        socket.current.off("receiveMessage");
+      };
+    }
+  }, [selectedChat]);
+
   const handleSendMessage = () => {
     if (message.trim()) {
-      selectedChat.messages.push({
-        text: message,
-        sender: "You",
-        time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-      });
+      const newMessage = {
+        chatId: selectedChat.chatId,
+        sender: "You", // Replace with actual sender info
+        message: message.trim(),
+        timestamp: new Date(),
+      };
+
+      // Emit the message to the server
+      socket.current.emit("sendMessage", newMessage);
+
+      // Update local state with the new message
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
       setMessage("");
     }
   };
@@ -49,6 +94,7 @@ const Chat = ({ selectedChat }) => {
       setPlusDropdownVisible(false);
     }
   };
+
   useEffect(() => {
     document.addEventListener("click", closeDropdowns);
     const handleKeydown = (e) => {
@@ -65,16 +111,6 @@ const Chat = ({ selectedChat }) => {
     };
   }, []);
 
-  const handleCallClick = (type) => {
-    alert(`You have to use your mobile phone to ${type} call.`);
-  };
-  const handleSearchClick = () => {
-    alert('The search option will be available soon')
-  }
-  const handleMicClick = () =>
-  {
-    alert('Microphone feature is not available for now')
-  }
   if (!selectedChat) {
     return (
       <div className="chat-placeholder">
@@ -112,17 +148,13 @@ const Chat = ({ selectedChat }) => {
         <div className="chat-header-right">
           <i
             className="fas fa-video"
-            onClick={() => handleCallClick("video")}
             title="Start a video call"
           ></i>
           <i
             className="fas fa-phone"
-            onClick={() => handleCallClick("audio")}
             title="Start an audio call"
           ></i>
-          <i className="fas fa-search"
-          onClick={()=> handleSearchClick("Search")}
-          title="Search inside chat"></i>
+          <i className="fas fa-search" title="Search inside chat"></i>
           <i
             className="fas fa-ellipsis-v dropdown-toggle"
             onClick={toggleMenuDropdown}
@@ -144,24 +176,24 @@ const Chat = ({ selectedChat }) => {
 
       {/* Messages */}
       <div className="messages">
-        {selectedChat.messages.map((msg, index) => (
+        {messages.map((msg, index) => (
           <div
             key={index}
             className={`message ${msg.sender === "You" ? "sent" : "received"}`}
           >
-            <p>{msg.text}</p>
-            <span className="time">{msg.time}</span>
+            <p>{msg.message}</p>
+            <span className="time">
+              {new Date(msg.timestamp).toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </span>
           </div>
         ))}
       </div>
 
       {/* Input Bar */}
       <div className="chat-input">
-        <i
-          className="fas fa-plus"
-          onClick={togglePlusDropdown}
-          title="More options"
-        ></i>
         <input
           type="text"
           value={message}
@@ -169,40 +201,7 @@ const Chat = ({ selectedChat }) => {
           onKeyPress={handleKeyPress}
           placeholder="Type a message..."
         />
-        {message.trim() ? (
-          <button onClick={handleSendMessage}>
-            <i className="fas fa-paper-plane"></i> {}
-          </button>
-        ) : (
-          <i className="fas fa-microphone"
-          onClick={()=> handleMicClick("Mic")}
-          title="Click on Mic"></i>
-        )}
-        {/* Plus Dropdown */}
-        {plusDropdownVisible && (
-          <div className="dropdown-menu plus-dropdown" ref={plusDropdownRef}>
-            <ul>
-              <li>
-                <i className="fas fa-file-alt"></i> Document
-              </li>
-              <li>
-                <i className="fas fa-image"></i> Photos & videos
-              </li>
-              <li>
-                <i className="fas fa-camera"></i> Camera
-              </li>
-              <li>
-                <i className="fas fa-user"></i> Contact
-              </li>
-              <li>
-                <i className="fas fa-poll"></i> Poll
-              </li>
-              <li>
-                <i className="fas fa-sticky-note"></i> New sticker
-              </li>
-            </ul>
-          </div>
-        )}
+        <button onClick={handleSendMessage}>Send</button>
       </div>
     </div>
   );
