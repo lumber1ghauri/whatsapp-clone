@@ -121,7 +121,3 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Contributing
 Contributions are welcome! If you'd like to contribute, please fork the repository and create a pull request.
-
----
-
-Feel free to replace `<your_mongodb_connection_string>` with your MongoDB URI in the `.env` section. Let me know if you need further assistance!
