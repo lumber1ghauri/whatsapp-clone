@@ -3,17 +3,9 @@ const router = express.Router();
 const Message = require("../models/Message");
 
 // Get all messages (Optional, for debugging purposes)
-router.get("/", async (req, res) => {
-  try {
-    const messages = await Message.find(); // Fetch all messages
-    res.status(200).json(messages);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
 
 // Get all messages for a specific chat
-router.get('/:chatId', authenticate, async (req, res) => {
+router.get('/:chatId', async (req, res) => {
   try {
     const messages = await Message.find({ chatId: req.params.chatId });
 

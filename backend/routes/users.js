@@ -12,4 +12,30 @@ router.get("/users", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  try {
+    const { name, phone, status, profilePic } = req.body;
+
+    // Validate required fields
+    if (!name || !phone) {
+      return res.status(400).json({ error: "Name and phone are required" });
+    }
+
+    // Create a new user
+    const newUser = new User({
+      name,
+      phone,
+      status: status || "Hey there! I am using WhatsApp.",
+      profilePic: profilePic || "default.png",
+    });
+
+    // Save to the database
+    const savedUser = await newUser.save();
+    res.status(201).json(savedUser);
+  } catch (err) {
+    console.error("Error creating user:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 module.exports = router;
