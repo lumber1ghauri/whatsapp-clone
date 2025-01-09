@@ -6,6 +6,7 @@ const userRoutes = require("./routes/users"); // Import user routes
 const messageRoutes = require("./routes/messages"); // Import message routes
 const http = require("http");
 const { Server } = require("socket.io");
+const Message = require("./models/Message"); // Import the Message model
 
 const app = express(); // Initialize the app
 const PORT = process.env.PORT || 5050; // Backend server port
@@ -48,14 +49,33 @@ const io = new Server(server, {
 });
 
 // Socket.IO events
-io.on("connection", (socket) => {
+io.on("connection", async (socket) => {
   console.log(`A user connected with socket ID: ${socket.id}`);
 
+  // Fetch and send all messages when a user connects
+  try {
+    const messages = await Message.find();
+    socket.emit("initialMessages", messages);
+  } catch (error) {
+    console.error("Error fetching messages from database:", error);
+  }
+
   // Listen for "sendMessage" event
-  socket.on("sendMessage", (message) => {
+  socket.on("sendMessage", async (message) => {
     console.log("Message received:", message);
-    // Broadcast the message to all connected clients
-    io.emit("receiveMessage", message);
+
+    // Save the message to the database
+    try {
+      const newMessage = new Message(message);
+      console.log("Attempting to save message to database:", newMessage);
+      await newMessage.save();
+      console.log("Message saved to database:", newMessage);
+
+      // Broadcast the message to all connected clients
+      io.emit("receiveMessage", newMessage);
+    } catch (error) {
+      console.error("Error saving message to database:", error);
+    }
   });
 
   // Handle user disconnect
