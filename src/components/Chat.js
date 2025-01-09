@@ -34,6 +34,7 @@ const Chat = ({ selectedChat }) => {
       fetchMessages();
 
       socket.current.on("receiveMessage", (newMessage) => {
+        console.log("New message received:", newMessage);
         if (newMessage.chatId === selectedChat.chatId) {
           setMessages((prevMessages) => [...prevMessages, newMessage]);
         }
@@ -54,9 +55,11 @@ const Chat = ({ selectedChat }) => {
         timestamp: new Date(),
       };
 
+      console.log("Sending message:", newMessage);
       socket.current.emit("sendMessage", newMessage);
 
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
+      // Remove this line to prevent adding the message twice
+      // setMessages((prevMessages) => [...prevMessages, newMessage]);
       setMessage("");
     }
   };
@@ -202,5 +205,4 @@ const Chat = ({ selectedChat }) => {
     </div>
   );
 };
-
 export default Chat;
