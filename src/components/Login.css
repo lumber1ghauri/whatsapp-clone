@@ -152,3 +152,58 @@ body {
     margin-right: 5px;
   }
   
+  /* Small Login Box */
+.small-login-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  border: 1px solid #25d366;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  text-align: center;
+  z-index: 1000;
+}
+
+.small-login-box h3 {
+  color: #128c7e;
+  margin-bottom: 15px;
+}
+
+.small-login-box label {
+  display: block;
+  margin-top: 10px;
+  color: #555;
+}
+
+.small-login-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.submit-button {
+  background-color: #25d366;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.submit-button:hover {
+  background-color: #128c7e;
+}
+
+.close-button {
+  background-color: #f0f0f0;
+  color: #555;
+  border: none;
+  padding: 5p
+}

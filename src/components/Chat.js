@@ -1,22 +1,21 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import { io } from "socket.io-client"; // Import Socket.IO client
+import { io } from "socket.io-client";
 import "./Chat.css";
 
 const Chat = ({ selectedChat }) => {
-  const [messages, setMessages] = useState([]); // Store messages
+  const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState(""); 
   const [menuDropdownVisible, setMenuDropdownVisible] = useState(false);
   const [plusDropdownVisible, setPlusDropdownVisible] = useState(false);
-  const socket = useRef(null); // Use a ref to hold the socket connection
+  const socket = useRef(null);
 
   const menuDropdownRef = useRef(null);
   const plusDropdownRef = useRef(null);
 
-  // Initialize Socket.IO connection and fetch messages when selectedChat changes
   useEffect(() => {
     if (!socket.current) {
-      socket.current = io("http://localhost:5050"); // Connect to the backend WebSocket server
+      socket.current = io("http://localhost:5050");
     }
 
     if (selectedChat) {
@@ -26,7 +25,7 @@ const Chat = ({ selectedChat }) => {
           const response = await axios.get(
             `http://localhost:5050/api/messages/${selectedChat.chatId}`
           );
-          setMessages(response.data); // Set the state to the fetched messages
+          setMessages(response.data);
         } catch (error) {
           console.error("Error fetching messages:", error);
         }
@@ -34,8 +33,8 @@ const Chat = ({ selectedChat }) => {
       
       fetchMessages();
 
-      // Listen for new messages from the server
       socket.current.on("receiveMessage", (newMessage) => {
+        console.log("New message received:", newMessage);
         if (newMessage.chatId === selectedChat.chatId) {
           setMessages((prevMessages) => [...prevMessages, newMessage]);
         }
@@ -51,16 +50,16 @@ const Chat = ({ selectedChat }) => {
     if (message.trim()) {
       const newMessage = {
         chatId: selectedChat.chatId,
-        sender: "You", // Replace with actual sender info
+        sender: "You",
         message: message.trim(),
         timestamp: new Date(),
       };
 
-      // Emit the message to the server
+      console.log("Sending message:", newMessage);
       socket.current.emit("sendMessage", newMessage);
 
-      // Update local state with the new message
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
+      // Remove this line to prevent adding the message twice
+      // setMessages((prevMessages) => [...prevMessages, newMessage]);
       setMessage("");
     }
   };
@@ -206,5 +205,4 @@ const Chat = ({ selectedChat }) => {
     </div>
   );
 };
-
 export default Chat;
