@@ -109,6 +109,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 ---
 
+
+
+This project has been terminated momentarily 
+will work on it further 
+If you want to check my Whatsapp web clone please refer to my another repository.
+
 ## Future Plans
 - Complete the integration of real-time chat functionality using **Socket.IO**.
 - Develop group chat, archived chats, and enhanced status features.
