@@ -4,6 +4,9 @@ This project is a web-based WhatsApp clone built using the MERN stack (MongoDB, 
 
 ## Project Status
 This project is currently under development and is not yet fully functional.
+The project development has stopped currently 
+and will work on it later sometimes 
+
 
 ### Completed Functionalities:
 
