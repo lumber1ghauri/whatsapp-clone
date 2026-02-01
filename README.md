@@ -1,5 +1,5 @@
 # WhatsApp Clone (MERN Stack)
-
+//ADDING NEW LINE FOR TESTING PURPOSES
 This project is a web-based WhatsApp clone built using the MERN stack (MongoDB, Express.js, React, Node.js). It aims to replicate some of the core functionalities of WhatsApp, including a front-end chat interface, login, a status page, and a QR code-based loading screen. Additionally, it includes an integrated backend to fetch and store messages in a database.
 
 ## Project Status
